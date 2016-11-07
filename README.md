@@ -1,29 +1,29 @@
-# Ride: Template Library (Frame)
+# Ride: Template Library (Huqis)
 
-Frame engine for the template library of the PHP Ride framework.
+Huqis engine for the template library of the PHP Ride framework.
 
-Read the documentation for [Frame](http://github.com/php-frame/frame). 
+Read the documentation for [Huqis](http://github.com/huqis/huqis). 
 
 ## Code Sample
 
 Check this code sample to see how to initialize this library:
 
 ```php
-use frame\library\DefaultTemplateContext;
-use frame\library\TemplateEngine;
+use huqis\DefaultTemplateContext;
+use huqis\TemplateEngine;
 
-use ride\library\template\engine\FrameEngine;
-use ride\library\template\engine\FrameResourceHandler;
+use ride\library\template\engine\HuqisEngine;
+use ride\library\template\engine\HuqisResourceHandler;
 use ride\library\system\System;
 
 function createFrameTemplateEngine(System $system) {
-    $resourceHandler = new FrameResourceHandler($system->getFileBrowser(), 'view/frame');
+    $resourceHandler = new HuqisResourceHandler($system->getFileBrowser(), 'view/frame');
     $context = new DefaultTemplateContext($resourceHandler);
     
     $cache = new DirectoryTemplateCache('/path/to/cache');
     
     $engine = new TemplateEngine($context, $cache);
-    $engine = new FrameEngine($engine);
+    $engine = new HuqisEngine($engine);
     
     return $engine;
 }
@@ -32,15 +32,15 @@ function createFrameTemplateEngine(System $system) {
 ### Implementations
 
 You can check the related implementations of this library:
-- [ride/app-template-frame](https://github.com/all-ride/ride-app-template-frame)
+- [ride/app-template-huqis](https://github.com/all-ride/ride-app-template-frame)
 - [ride/lib-template](https://github.com/all-ride/ride-lib-template)
-- [ride/web-template-frame](https://github.com/all-ride/ride-web-template-smarty)
-- [ride/web-template-frame-minifier](https://github.com/all-ride/ride-web-template-smarty-minifier)
+- [ride/web-template-huqis](https://github.com/all-ride/ride-web-template-smarty)
+- [ride/web-template-huqis-minifier](https://github.com/all-ride/ride-web-template-smarty-minifier)
 
 ## Installation
 
 You can use [Composer](http://getcomposer.org) to install this library.
 
 ```
-composer require ride/lib-template-frame
+composer require ride/lib-template-huqis
 ```

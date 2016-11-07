@@ -2,12 +2,12 @@
 
 namespace ride\library\template\engine;
 
-use frame\library\resource\AbstractTemplateResourceHandler;
+use huqis\resource\AbstractTemplateResourceHandler;
 
 use ride\library\system\file\browser\FileBrowser;
 use ride\library\template\exception\ResourceNotFoundException;
 
-class FrameResourceHandler extends AbstractTemplateResourceHandler {
+class HuqisResourceHandler extends AbstractTemplateResourceHandler {
 
     /**
      * File browser to lookup the templates
@@ -168,13 +168,13 @@ class FrameResourceHandler extends AbstractTemplateResourceHandler {
         $file = null;
 
         if ($this->templateId) {
-            $fileName = $path . $name . '.' . $this->templateId . '.' . FrameEngine::EXTENSION;
+            $fileName = $path . $name . '.' . $this->templateId . '.' . HuqisEngine::EXTENSION;
 
             $file = $this->fileBrowser->getFile($fileName);
         }
 
         if (!$file) {
-            $fileName = $path . $name . '.' . FrameEngine::EXTENSION;
+            $fileName = $path . $name . '.' . HuqisEngine::EXTENSION;
 
             $file = $this->fileBrowser->getFile($fileName);
         }
@@ -234,15 +234,15 @@ class FrameResourceHandler extends AbstractTemplateResourceHandler {
         foreach ($pathDirectories as $pathDirectory) {
             $pathFiles = $pathDirectory->read();
             foreach ($pathFiles as $pathFile) {
-                if ($pathFile->isDirectory() || $pathFile->getExtension() != FrameEngine::EXTENSION) {
+                if ($pathFile->isDirectory() || $pathFile->getExtension() != HuqisEngine::EXTENSION) {
                     continue;
                 }
 
                 $pathFile = $this->fileBrowser->getRelativeFile($pathFile);
                 $filePath = $pathFile->getPath();
 
-                $resultPath = substr(str_replace($basePath, '', $filePath), 0, (strlen(FrameEngine::EXTENSION) + 1) * -1);
-                $resultName = substr(str_replace($path, '', $filePath), 0, (strlen(FrameEngine::EXTENSION) + 1) * -1);
+                $resultPath = substr(str_replace($basePath, '', $filePath), 0, (strlen(HuqisEngine::EXTENSION) + 1) * -1);
+                $resultName = substr(str_replace($path, '', $filePath), 0, (strlen(HuqisEngine::EXTENSION) + 1) * -1);
 
                 $files[$resultPath] = $resultName;
             }

@@ -2,8 +2,8 @@
 
 namespace ride\library\template\engine;
 
-use frame\library\TemplateContext;
-use frame\library\TemplateEngine;
+use huqis\TemplateContext;
+use huqis\TemplateEngine;
 
 use ride\library\system\file\File;
 use ride\library\template\exception\ResourceNotSetException;
@@ -16,13 +16,13 @@ use \Exception;
 /**
  * Implementation of the Frmae template engine
  */
-class FrameEngine extends AbstractEngine {
+class HuqisEngine extends AbstractEngine {
 
     /**
      * Name of this engine
      * @var string
      */
-    const NAME = 'frame';
+    const NAME = 'huqis';
 
     /**
      * Extension for the template resources
@@ -43,28 +43,25 @@ class FrameEngine extends AbstractEngine {
     const COMMENT_CLOSE = '*}';
 
     /**
-     * Instance of the Frame engine
+     * Instance of the Huqis engine
      * @var
      */
-    protected $frame;
+    protected $huqis;
 
     /**
      * Implementation of the resource handler
-     * @var \ride\library\template\FrameResourceHandler
+     * @var \ride\library\template\HuqisResourceHandler
      */
     protected $resourceHandler;
 
     /**
      * Constructs a new Frame template engine
-     * @param \frame\library\TemplateContext $context Initial context for the
-     * template engine
-     * @param \frame\library\TemplateEngine $frame Instance of the template
-     * engine
+     * @param \huqis\TemplateEngine $huqis Instance of the template engine
      * @return null
      */
-    public function __construct(TemplateEngine $frame) {
-        $this->resourceHandler = $frame->getContext()->getResourceHandler();
-        $this->frame = $frame;
+    public function __construct(TemplateEngine $huqis) {
+        $this->resourceHandler = $huqis->getContext()->getResourceHandler();
+        $this->huqis = $huqis;
     }
 
     /**
@@ -85,7 +82,7 @@ class FrameEngine extends AbstractEngine {
         $this->preProcess($template);
 
         try {
-            $output = $this->frame->render($resource, $template->getVariables());
+            $output = $this->huqis->render($resource, $template->getVariables());
 
             $exception = null;
         } catch (Exception $exception) {
@@ -157,12 +154,12 @@ class FrameEngine extends AbstractEngine {
 
         $this->resourceHandler->setThemes($themeHierarchy);
 
-        $this->frame->setCompileId($template->getTheme());
+        $this->huqis->setCompileId($template->getTheme());
 
         $templateId = $template->getResourceId();
         if ($templateId) {
             $this->resourceHandler->setTemplateId($templateId);
-            $this->frame->setCompileId($this->frame->getCompileId() . '-' . $templateId);
+            $this->huqis->setCompileId($this->huqis->getCompileId() . '-' . $templateId);
         }
     }
 
@@ -173,7 +170,7 @@ class FrameEngine extends AbstractEngine {
     protected function postProcess() {
         $this->resourceHandler->setThemes(null);
         $this->resourceHandler->setTemplateId(null);
-        $this->frame->setCompileId(null);
+        $this->huqis->setCompileId(null);
     }
 
 }
